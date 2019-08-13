@@ -85,6 +85,18 @@ Resources:
           - AWSInstanceType2Arch
           - Ref: InstanceType
           - Arch
+      UserData:
+        Fn::Base64:
+          !Sub |
+            #!/bin/bash
+            yum install -y gcc-c++ make
+            curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -
+            yum install -y nodejs 6.17.1
+            yum install -y git
+            git clone https://github.com/lordnighton/aws-cf-and-cp-poc.git
+            cd aws-cf-and-cp-poc
+            npm install
+            npm start
   IamInstanceProfile:
     Type: "AWS::IAM::InstanceProfile"
     Properties:
@@ -98,6 +110,11 @@ Resources:
       - IpProtocol: tcp
         FromPort: '22'
         ToPort: '22'
+        CidrIp:
+          Ref: SSHLocation
+      - IpProtocol: "tcp"
+        FromPort: '9001'
+        ToPort: '9001'
         CidrIp:
           Ref: SSHLocation
 Outputs:

@@ -15,7 +15,7 @@ aws ec2 describe-key-pairs --key-name SSHKeys
 aws cloudformation delete-stack --stack-name single-instance-with-security-group
 
 #SSH connect
-ssh -i ./SSHKeys.pem ec2-user@ec2-54-172-189-198.compute-1.amazonaws.com
+ssh -i ./SSHKeys.pem ec2-user@ec2-52-23-211-143.compute-1.amazonaws.com
 
 # Install Node JS
 nvm install 4.4
@@ -32,3 +32,7 @@ yum install -y gcc-c++ make
 curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -
 yum install -y nodejs 6.17.1
 yum install -y git
+git clone https://github.com/lordnighton/aws-cf-and-cp-poc.git
+cd aws-cf-and-cp-poc
+npm install
+npm start
