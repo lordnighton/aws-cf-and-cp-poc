@@ -27,7 +27,7 @@ npm start
 # Cleanup
 npm run clean
 
-#EC2 user data
+#EC2 user data (should NOT start form sudo)
 yum install -y gcc-c++ make
 curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -
 yum install -y nodejs 6.17.1
